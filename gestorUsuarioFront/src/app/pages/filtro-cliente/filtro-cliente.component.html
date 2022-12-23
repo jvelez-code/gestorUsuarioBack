@@ -1,15 +1,18 @@
-<mat-card class="mat-card">
-    <mat-card-header class="mat-card-header">
-      <mat-card-title class="mat-card-content">Información del Aportante</mat-card-title>
-    </mat-card-header>
-</mat-card>
+
 
 
 
 <!-- No olvidar agregar ReactiveFormsModule en App.module.ts, util para trabajar con formularios-->
-<form class="example-container" [formGroup]="form" #frmPaciente="ngForm" (ngSubmit)="operar()">
+<form class="example-container" [formGroup]="form" #frmPaciente="ngForm" >
 
     <div  class="center">
+
+      <mat-card class="mat-card">
+        <mat-card-header class="mat-card-header">
+          <mat-card-title class="mat-card-content">Información del Aportante</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+
         <mat-form-field appearance="fill">
             <mat-label>Tipo Documento</mat-label>
             <mat-select placeholder="SELECCCION" [(value)]="tipoDocumento">
@@ -24,9 +27,135 @@
         <input matInput placeholder="DOCUMENTO" required formControlName="razonSocial" type="number" [(ngModel)]="nroDocumento">
     </mat-form-field>
 
-    <button mat-raised-button color="primary"  type="button" (click)="operar()">
+    <button mat-raised-button color="primary"  type="button" (click)="buscar()">
         <mat-icon>call</mat-icon>
         <span>Consultar</span>
     </button>
 </div >
+
 </form>
+<div>
+  <mat-card class="mat-card">
+    <mat-card-header class="mat-card-header">
+      <mat-card-title class="mat-card-content">Información del Aportante</mat-card-title>
+    </mat-card-header>
+</mat-card>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="razonSocial">
+        <th mat-header-cell *matHeaderCellDef> RAZÓN SOCIAL </th>
+        <td mat-cell *matCellDef="let element"> {{element.razonSocial}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="tipoDocumento.tipoDoc">
+        <th mat-header-cell *matHeaderCellDef> TIPO </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipoDocumento.tipoDoc}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nroDocumento">
+        <th mat-header-cell *matHeaderCellDef> DOCUMENTO </th>
+        <td mat-cell *matCellDef="let element"> {{element.nroDocumento}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="divipola.nombre">
+        <th mat-header-cell *matHeaderCellDef> MUNICIPIO </th>
+        <td mat-cell *matCellDef="let element"> {{element.divipola.nombre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="divipola.divipolaPadre.nombre">
+        <th mat-header-cell *matHeaderCellDef> DEPARTAMENTO </th>
+        <td mat-cell *matCellDef="let element"> {{element.divipola.divipolaPadre.nombre}} </td>
+      </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef> DIRECCIÓN </th>
+        <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="telefonoCelular">
+        <th mat-header-cell *matHeaderCellDef> CELULAR </th>
+        <td mat-cell *matCellDef="let element"> {{element.telefonoCelular}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="telefonoFijo">
+        <th mat-header-cell *matHeaderCellDef> FIJO </th>
+        <td mat-cell *matCellDef="let element"> {{element.telefonoFijo}} </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef  > MODIFICAR </th>
+        <td mat-cell *matCellDef="let element" > 
+          <button mat-button color="primary" >
+            <mat-icon>ballot</mat-icon>
+          </button>  
+        </td>
+    </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>  
+
+  <form class="example-container" [formGroup]="form2" #frmPaciente="ngForm" >
+
+  <div >
+
+    <mat-card class="mat-card">
+      <mat-card-header class="mat-card-header">
+        <mat-card-title class="mat-card-content">Información del Contacto</mat-card-title>
+      </mat-card-header>
+  </mat-card>
+     
+  <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre" required formControlName="nombre" >
+  </mat-form-field>
+
+     
+  <mat-form-field appearance="fill">
+    <mat-label>Correo</mat-label>
+    <input matInput placeholder="Correo" required formControlName="correo" >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>telefono(P)</mat-label>
+    <input matInput placeholder="telefono(P)" required formControlName="telefonop" >
+ </mat-form-field>
+
+ <mat-form-field appearance="fill">
+  <mat-label>telefono(S)</mat-label>
+  <input matInput placeholder="telefono(S)" required formControlName="telefonos" >
+</mat-form-field>
+
+  </div>
+
+  <div >
+    <mat-card class="mat-card">
+      <mat-card-header class="mat-card-header">
+        <mat-card-title class="mat-card-content">Historico de Gestión</mat-card-title>
+      </mat-card-header>
+  </mat-card>
+  <table mat-table [dataSource]="dataSource"  matSort  class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+
+      <ng-container matColumnDef="serial" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center"> <h4>#</h4> </th>
+            <td mat-cell *matCellDef="let i = index"  scope="row">{{i+1}}</td>
+      </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="idDetalleGestion" >
+      <th mat-header-cell *matHeaderCellDef style="text-align: center"> EXTENSION </th>
+      <td mat-cell *matCellDef="let element"  [ngClass]="element.descripcion"> {{element.idDetalleGestion }} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="detalleGestionColumns"></tr>
+    
+    <tr mat-row *matRowDef="let row; columns: detalleGestionColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  </form>

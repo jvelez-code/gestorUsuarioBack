@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,21 +8,19 @@ import { Parametros } from '../_model/parametros';
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+export class DetalleGestionService {
 
-  private url:string = `${environment.HOST}/clientes`;
+  private url:string = `${environment.HOST}/detallegestiones`;
 
   constructor(
     private http: HttpClient,
     private router: Router ) { }
 
 
-
-    filtroCliente(parametros: Parametros):Observable<any>{
-     // console.log('parame',parametros)  
+    detalleHistorico(parametros: Parametros):Observable<any>{
+      console.log('paramedetalle',parametros)  
       const headers = { 'content-type': 'application/json'}  
       const body=JSON.stringify(parametros);
       return this.http.post<Parametros>(`${this.url}/buscar`,body,{'headers':headers});
     }
-
 }

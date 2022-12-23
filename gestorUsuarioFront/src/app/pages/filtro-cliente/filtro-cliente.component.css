@@ -7,7 +7,7 @@
   }
 
   .mat-card-header{
-    background-color: #4E82B0 ;
+    background-color: #2DC9C9 ;
     padding:5px ;
   }
   
@@ -18,3 +18,12 @@
   .mat-card-content{
     padding:5px ;
   }
+
+  .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }
+
+  table {
+    width: 100%;
+  }
+  
