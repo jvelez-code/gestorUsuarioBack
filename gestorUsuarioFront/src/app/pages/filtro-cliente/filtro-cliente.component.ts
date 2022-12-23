@@ -9,6 +9,7 @@ import { Parametros } from 'src/app/_model/parametros';
 import { TipoDocumento } from 'src/app/_model/tipoDocumento';
 import { ClienteService } from 'src/app/_services/cliente.service';
 import { DetalleGestionService } from 'src/app/_services/detalle-gestion.service';
+import { GestionService } from 'src/app/_services/gestion.service';
 import { TipoDocumentoService } from 'src/app/_services/tipo-documento.service';
 
 
@@ -26,18 +27,19 @@ export class FiltroClienteComponent implements OnInit{
   'divipola.divipolaPadre.nombre','direccion','telefonoCelular','telefonoFijo','acciones'];
   dataSource !: MatTableDataSource<Cliente>;
 
-  detalleGestionColumns: string[] = ['idDetalleGestion'];
+  detalleGestionColumns: string[] = ['idGestion'];
   dataSourceDG !: MatTableDataSource<Cliente>;
 
   tipoDocumento !: string;
   nroDocumento  !: string;
-  idCliente  : number = 252652;
+  idCliente   !: string;
   panelOpenState = false;
   parametros !: Parametros;
 
   constructor( private TipoDocumentoService : TipoDocumentoService,
     private clienteService : ClienteService,
     private detalleGestionService : DetalleGestionService,
+    private gestionService :GestionService ,
     private snackBar: MatSnackBar) { }
 
 
@@ -76,7 +78,7 @@ export class FiltroClienteComponent implements OnInit{
   
 buscar(){
  this.clienteSelec();
- this.detalleHistorico();
+ this.gestionHistorico();
 
 }
   
@@ -87,7 +89,7 @@ buscar(){
     const parametros= {tipoDoc:this.tipoDocumento, nroDoc:this.nroDocumento}
     
     this.clienteService.filtroCliente(parametros).subscribe( data =>{
-       // console.log(data)
+       //console.log(data)
         this.dataSource= new MatTableDataSource(data);
        // console.log('tipo2',data.idCliente);
     });
@@ -96,13 +98,17 @@ buscar(){
 
   }
 
-  detalleHistorico(){
+  gestionHistorico(){
 
-    const parametros= {nroCliente:252652}
+    console.log('tipo',this.tipoDocumento);
+    console.log('doc',this.nroDocumento);
+
+    const parametros= {nroCliente:this.nroDocumento}
     
-    this.detalleGestionService.detalleHistorico(parametros).subscribe( data =>{
-        console.log('detalle: ',data)
+    this.gestionService.gestionHistorico(parametros).subscribe( data =>{
+        console.log(data)
         this.dataSourceDG= new MatTableDataSource(data);
+       // console.log('tipo2',data.idCliente);
     });
   }
 

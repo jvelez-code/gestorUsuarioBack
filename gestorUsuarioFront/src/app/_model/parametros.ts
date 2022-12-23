@@ -7,6 +7,6 @@ export interface Parametros{
       campana ?: number;
       tipoDoc?: string;
       nroDoc?: string;
-      nroCliente?: number;
+      nroCliente?: string;
   }
   //? cuando llame la interface se opcional
