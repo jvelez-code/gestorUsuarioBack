@@ -24,7 +24,7 @@
         
     <mat-form-field appearance="fill">
         <mat-label>Nro Documento</mat-label>
-        <input matInput placeholder="DOCUMENTO" required formControlName="razonSocial" type="number" [(ngModel)]="nroDocumento">
+        <input matInput placeholder="DOCUMENTO" formControlName="razonSocial" type="number" [(ngModel)]="nroDocumento">
     </mat-form-field>
 
     <button mat-raised-button color="primary"  type="button" (click)="buscar()">
@@ -40,6 +40,8 @@
       <mat-card-title class="mat-card-content">Información del Aportante</mat-card-title>
     </mat-card-header>
 </mat-card>
+
+<div class="example-form">INFORMACIÓN DEL APORTANTE</div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="razonSocial">
@@ -97,46 +99,11 @@
     </table>
   </div>  
 
+ 
   <form class="example-container" [formGroup]="form2" #frmPaciente="ngForm" >
-
+    <div class="example-form">HISTORICO DE GESTIÓN</div>
   <div >
-
-    <mat-card class="mat-card">
-      <mat-card-header class="mat-card-header">
-        <mat-card-title class="mat-card-content">Información del Contacto</mat-card-title>
-      </mat-card-header>
-  </mat-card>
-     
-  <mat-form-field appearance="fill">
-      <mat-label>Nombre</mat-label>
-      <input matInput placeholder="Nombre" required formControlName="nombre" >
-  </mat-form-field>
-
-     
-  <mat-form-field appearance="fill">
-    <mat-label>Correo</mat-label>
-    <input matInput placeholder="Correo" required formControlName="correo" >
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>telefono(P)</mat-label>
-    <input matInput placeholder="telefono(P)" required formControlName="telefonop" >
- </mat-form-field>
-
- <mat-form-field appearance="fill">
-  <mat-label>telefono(S)</mat-label>
-  <input matInput placeholder="telefono(S)" required formControlName="telefonos" >
-</mat-form-field>
-
-  </div>
-
-  <div >
-    <mat-card class="mat-card">
-      <mat-card-header class="mat-card-header">
-        <mat-card-title class="mat-card-content">Historico de Gestión</mat-card-title>
-      </mat-card-header>
-  </mat-card>
-  <table mat-table [dataSource]="dataSource"  matSort  class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource"  matSort  class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   
@@ -160,29 +127,97 @@
   </div>
   <div  class="center">
 
+    
+    
+    
+    
+    <!--Formulario de tipificacion-->
+   
+
     <mat-card class="mat-card">
       <mat-card-header class="mat-card-header">
         <mat-card-title class="mat-card-content">Tipifica la Gestión</mat-card-title>
       </mat-card-header>
   </mat-card>
 
-      <mat-form-field appearance="fill">
-          <mat-label>Tipo Documento</mat-label>
-          <mat-select placeholder="SELECCCION" [(value)]="tipoDocumento">
-            <mat-option *ngFor="let p of (  tipoDocumento$ | async )" [value]="p.tipoDoc">
-              {{p.tipoDoc}}
+ <div> 
+  <form class="example-form" [formGroup]="form2" #frmPaciente="ngForm">
+    
+    <div class="example-form">CONTACTO</div>
+  <table class="example-full-width" cellspacing="0"><tr>
+    
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Nombre del Contacto</mat-label>
+      <input matInput>
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Correo del Contacto</mat-label>
+      <input matInput>
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Teléfono (P)</mat-label>
+      <input matInput>
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Teléfono (S)</mat-label>
+      <input matInput>
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Teléfono Celular</mat-label>
+      <input matInput>
+    </mat-form-field></td>
+    
+  </tr></table>
+</form></div>
+
+<form>
+  <div class="example-form">ESTADOS</div>
+  <div>
+     <table class="example-full-width" cellspacing="0"><tr> 
+      <td></td>     
+      <td><mat-form-field class="example-full-width">
+          <mat-label>Tipo Gestion</mat-label>
+          <mat-select   placeholder="SELECCCION" [(value)]="tipoGestionP" (selectionChange)="subtipoGestion($event.value)">
+            <mat-option *ngFor="let p of (  tipoGestion$ | async )" [value]="p.idEstadoGestion">
+              {{p.nombre}}
             </mat-option>
           </mat-select>
-        </mat-form-field>   
+        </mat-form-field></td>  
+        <td></td>
         
-        <mat-form-field appearance="fill">
-          <mat-label>Tipo Documento</mat-label>
-          <mat-select placeholder="SELECCCION" [(value)]="tipoDocumento">
-            <mat-option *ngFor="let p of (  tipoDocumento$ | async )" [value]="p.tipoDoc">
-              {{p.tipoDoc}}
+        <td><mat-form-field appearance="fill" class="example-full-width" >
+          <mat-label>Subtipo Gestion</mat-label>
+          <mat-select placeholder="SELECCCION" [(value)]="tipoGestionH" (selectionChange)="subtipoGestion($event.value)">
+            <mat-option *ngFor="let p of (  subTipoGestion$ | async )" [value]="p.idEstadoGestion">
+              {{p.nombre}}
             </mat-option>
           </mat-select>
-        </mat-form-field> 
-      
+        </mat-form-field></td> 
+        <td></td>
+      </tr></table>
+  </div>
+  <div class="example-form">OBSERVACIÓN</div>
+    <div>
+      <table><tr>
+         <td> <p>
+          <mat-form-field class="mat-select-content" appearance="fill">
+            <mat-label>Observaciones</mat-label>
+            <textarea matInput placeholder="Información de la Gestiòn"></textarea>
+          </mat-form-field>
+        </p> </td>      
+      </tr></table>
+    </div>
+
+  
+    <section class="example-form">
+      <div class="example-button-row">
+        <button mat-raised-button color="primary">GUARDAR</button>
+        <button mat-raised-button color="accent">CANCELAR</button>
+      </div>
+    </section>
+    <mat-divider></mat-divider>
+    
+        
+      </form>
       </div >
   </form>

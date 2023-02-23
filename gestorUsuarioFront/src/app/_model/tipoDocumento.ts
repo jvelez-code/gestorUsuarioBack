@@ -1,6 +1,6 @@
 export class TipoDocumento {
 
-    idTipoDoc!: number;
+    id!: number;
     tipoDoc!: String;
     descripcion!: String;
 }

@@ -7,7 +7,7 @@
   }
 
   .mat-card-header{
-    background-color: #2DC9C9 ;
+    background-color: #bbbbd6 ;
     padding:5px ;
   }
   
@@ -26,4 +26,52 @@
   table {
     width: 100%;
   }
+
+
+    /*Tipifica Gestion*/
+  .mat-select-content{
+    width: 60%;
+  } 
+
+  .example-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+
+  /*Botones*/
+
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  
   
