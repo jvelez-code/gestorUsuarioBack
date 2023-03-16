@@ -1,7 +1,10 @@
 export class EstadoGestion {
+    
+    
+    
+    idEstadoGestion !: number;
     nombre!: String;
     idEstadoGestionPadre !: number;
-    idEstadoGestion !: number;
 
 }
 

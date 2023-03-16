@@ -7,6 +7,7 @@
   }
 
   .mat-card-header{
+    text-align: center;
     background-color: #bbbbd6 ;
     padding:5px ;
   }

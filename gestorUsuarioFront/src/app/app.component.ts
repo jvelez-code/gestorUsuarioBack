@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Menu } from './_model/menu';
+import { LoginService } from './_services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gestorUsuarioFront';
+  
+  menus!: Menu[];
+
+  constructor(
+    public loginService: LoginService
+  ) { }
+
+  ngOnInit() {
+  }
 }

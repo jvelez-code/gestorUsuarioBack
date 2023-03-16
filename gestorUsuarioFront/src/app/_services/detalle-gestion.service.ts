@@ -17,10 +17,10 @@ export class DetalleGestionService {
     private router: Router ) { }
 
 
-    detalleHistorico(parametros: Parametros):Observable<any>{
+    detalleHistoricoS(parametros: Parametros):Observable<any>{
       console.log('paramedetalle',parametros)  
       const headers = { 'content-type': 'application/json'}  
       const body=JSON.stringify(parametros);
-      return this.http.post<Parametros>(`${this.url}/buscar`,body,{'headers':headers});
+      return this.http.post<Parametros[]>(`${this.url}/buscar`,body,{'headers':headers});
     }
 }

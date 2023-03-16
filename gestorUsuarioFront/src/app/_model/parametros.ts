@@ -1,4 +1,5 @@
-export interface Parametros{
+export interface Parametros {
+
       fechaini ?: string;
       fechafin ?: string;
       usuario ?: string;
@@ -9,7 +10,8 @@ export interface Parametros{
       campana ?: number;
       tipoDoc?: string;
       nroDoc?: string;
-      nroCliente?: string;
+      idCliente?: number;
+      nroContacto?: number;
       estadoGestioP ?: number;
       estadoGestioH ?: number;
   }
